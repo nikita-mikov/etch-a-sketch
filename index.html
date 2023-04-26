@@ -10,12 +10,12 @@
 </head>
 <body>
     <script src="./logic.js" defer></script>
-    <div class="menu">
-        <div class="buttons">
+    <div class="menu flex flex-dir-col">
+        <div class="buttons flex flex-dir-col placed-center">
             <button class="start">Choose grid size</button>
             <button class="clear">Clear grid</button>
         </div>
-        <div class ="modes">
+        <div class ="modes flex flex-dir-col placed-center">
             <label for="modes">Mode: </label>
             <select name="modes" id="mode">
                 <option value="default">Default</option>
@@ -24,9 +24,9 @@
             </select>
         </div>
     </div>
-    <div class="main">
+    <div class="main flex flex-dir-col placed-center">
         <header>Etch-a-Sketch</header>
-        <div class="board">
+        <div class="board flex flex-dir-col">
     </div>
 
     </div>

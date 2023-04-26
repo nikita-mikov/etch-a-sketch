@@ -17,6 +17,18 @@ mode.addEventListener('change', (event) => {
     }
 })
 
+function createGrid(){
+    while(board.firstChild){
+        board.removeChild(board.firstChild)
+    }
+    for(let i = 0; i<Math.round(gridSize)**2; i++){
+            let box = board.appendChild(document.createElement('div'))
+            box.setAttribute('class', 'box')
+            box.style.height = 600/Math.round(gridSize)+'px'
+            box.style.width = 600/Math.round(gridSize)+'px'
+        }
+    }
+
 function defaultMode(){
     createGrid()
     let boxes = body.querySelectorAll('.box')
@@ -57,48 +69,30 @@ function rainbowMode(){
     }
 }
 
-function createGrid(){
-    while(board.firstChild){
-        board.removeChild(board.firstChild)
-    }
-    for(let i = 0; i<Math.round(gridSize); i++){
-        let row = board.appendChild(document.createElement('div'))
-        row.setAttribute('class', 'row')
-        for(let i = 0; i<gridSize; i++){
-            let box = row.appendChild(document.createElement('div'))
-            box.setAttribute('class', 'box')
-        }
+function checkMode(){
+    if(mode.value == 'default'){
+        defaultMode()
+    } else if(mode.value == 'opacity'){
+        opacityMode()
+    } else if(mode.value == 'rainbow'){
+        rainbowMode()
     }
 }
 
 startButton.addEventListener('click', () => {
-    let sizePrompt = prompt('How big should the grid be? (between 1 and 64)')
-    console.log(+sizePrompt)
-    console.log(sizePrompt)
+    let sizePrompt = prompt('How big should the grid be? (between 1 and 100)')
     if(isNaN(sizePrompt)){
         alert('Only numbers are allowed.')
-    } else if(sizePrompt>=1 && sizePrompt<=64){
+    } else if(sizePrompt>=1 && sizePrompt<=100){
         gridSize = sizePrompt
     } else{
-        alert('Please, choose a number between 1 and 64.')
+        alert('Please, choose a number between 1 and 100.')
     }
-    if(mode.value == 'default'){
-        defaultMode()
-    } else if(mode.value == 'opacity'){
-        opacityMode()
-    } else if(mode.value == 'rainbow'){
-        rainbowMode()
-    }
+    checkMode()
 })
 
 clearButton.addEventListener('click', () => {
-    if(mode.value == 'default'){
-        defaultMode()
-    } else if(mode.value == 'opacity'){
-        opacityMode()
-    } else if(mode.value == 'rainbow'){
-        rainbowMode()
-    }
+    checkMode()
 })
 
 defaultMode()
